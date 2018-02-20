@@ -1,1 +1,1 @@
-# wow-pets
+# World of Warcraft - Pets Battles

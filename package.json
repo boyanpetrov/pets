@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
+    "test": "echo \"Running tests...\"",
     "pg-migrate-create": " . ./env.sh && ./node_modules/.bin/node-pg-migrate create",
     "pg-migrate-up": ". ./env.sh && ./node_modules/.bin/node-pg-migrate up",
     "pg-migrate-down": ". ./env.sh && ./node_modules/.bin/node-pg-migrate down"
