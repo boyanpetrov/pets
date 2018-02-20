@@ -6,10 +6,10 @@
   "scripts": {
     "start": "NODE_ENV=production nodemon server/server.js",
     "dev": "NODE_ENV=development nodemon server/server.js",
-    "test": "npm run pg-down:dev && npm run pg-up:dev && sleep 5 && npm run unit && npm run integration",
+    "test": "NODE_ENV=development npm run pg-down:dev && npm run pg-up:dev && sleep 5 && npm run unit && npm run integration",
     "test:ci": "NODE_ENV=ci npm run unit && npm run integration",
-    "integration": "NODE_ENV=development npm run pg-migrate-up && mocha \"test/integration/test.js\"",
-    "unit": "NODE_ENV=development mocha \"test/unit/test.js\"",
+    "integration": "npm run pg-migrate-up && mocha \"test/integration/test.js\"",
+    "unit": "mocha \"test/unit/test.js\"",
     "pg-migrate-create": " . ./env.sh && ./node_modules/.bin/node-pg-migrate create",
     "pg-migrate-up": ". ./env.sh && ./node_modules/.bin/node-pg-migrate up",
     "pg-migrate-down": ". ./env.sh && ./node_modules/.bin/node-pg-migrate down",
