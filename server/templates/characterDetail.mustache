@@ -1,0 +1,33 @@
+<ul>
+  <li>Name: {{name}}</li>
+  <li>Realm: {{realm}}</li>
+  <li>Battlegroup: {{realm}}</li>
+  <li>Level: {{level}}</li>
+  <li>Achievement Points: {{achievementPoints}}</li>
+  <li>
+    <table border="1" style="width: 400px;">
+      <thead>
+        <th>&nbsp;</th>
+        <th>Name</th>
+        <th>Family</th>
+        <th>Stats</th>
+      </thead>
+      <tbody>
+        {{#pets.collected}}
+        <tr>
+          <td><img src="http://media.blizzard.com/wow/icons/56/{{icon}}.jpg" alt="icon"></td>
+          <td><a href="/pets/{{creatureId}}">{{name}}</a></td>
+          <td>{{family}}</td>
+          <td>
+            <ul>
+              <li>health: {{stats.health}}</li>
+              <li>power: {{stats.power}}</li>
+              <li>speed: {{stats.speed}}</li>
+            </ul>
+          </td>
+        </tr>
+        {{/pets.collected}}
+      </tbody>
+    </table>
+  </li>
+</ul>

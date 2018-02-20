@@ -1,0 +1,68 @@
+<table border="1" style="width: 400px;">
+  <thead>
+    <th>&nbsp;</th>
+    <th>Name</th>
+    <th>Family</th>
+    <th>Stats</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="http://media.blizzard.com/wow/icons/56/{{pet.icon}}.jpg" alt="icon"></td>
+      <td><a href="/pets/{{pet.creature_id}}">{{pet.name}}</a></td>
+      <td>{{pet.family}}</td>
+      <td>
+        <ul>
+          <li>health: {{pet.health}}</li>
+          <li>power: {{pet.power}}</li>
+          <li>speed: {{pet.speed}}</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<table border="1" style="width: 400px">
+  <thead>
+    <th>&nbsp;</th>
+    <th>Strong Against</th>
+    <th>Stats</th>
+  </thead>
+  <tbody>
+    {{#strengths}}
+    <tr>
+      <td><img src="http://media.blizzard.com/wow/icons/56/{{icon}}.jpg" alt="icon"></td>
+      <td><a href="/pets/{{creature_id}}">{{name}}</a></td>
+      <td>
+        <ul>
+          <li>health: {{health}}</li>
+          <li>power: {{power}}</li>
+          <li>speed: {{speed}}</li>
+        </ul>
+      </td>
+    </tr>
+    {{/strengths}}
+  </tbody>
+</table>
+<hr>
+<table border="1" style="width: 400px">
+  <thead>
+    <th>&nbsp;</th>
+    <th>Weak Against</th>
+    <th>Stats</th>
+  </thead>
+  <tbody>
+    {{#weaknesses}}
+    <tr>
+      <td><img src="http://media.blizzard.com/wow/icons/56/{{icon}}.jpg" alt="icon"></td>
+      <td><a href="/pets/{{creature_id}}">{{name}}</a></td>
+      <td>
+        <ul>
+          <li>health: {{health}}</li>
+          <li>power: {{power}}</li>
+          <li>speed: {{speed}}</li>
+        </ul>
+      </td>
+    </tr>
+    {{/weaknesses}}
+  </tbody>
+</table>

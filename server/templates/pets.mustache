@@ -1,0 +1,28 @@
+<table border="1">
+  <thead>
+    <th>&nbsp;</th>
+    <th>Name</th>
+    <th>Family</th>
+    <th>Strong Against</th>
+    <th>Weak Against</th>
+    <th>Stats</th>
+  </thead>
+  <tbody>
+    {{#pets}}
+    <tr>
+      <td><img src="http://media.blizzard.com/wow/icons/56/{{icon}}.jpg" alt="icon"></td>
+      <td><a href="/pets/{{creature_id}}">{{name}}</a></td>
+      <td>{{family}}</td>
+      <td>{{strong_against}}</td>
+      <td>{{weak_against}}</td>
+      <td>
+        <ul>
+          <li>health: {{health}}</li>
+          <li>power: {{power}}</li>
+          <li>speed: {{speed}}</li>
+        </ul>
+      </td>
+    </tr>
+    {{/pets}}
+  </tbody>
+</table>

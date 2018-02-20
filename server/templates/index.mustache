@@ -1,0 +1,12 @@
+{{^battletag}}
+<form action="/login" method="get">
+  <button type="submit">Login</button>
+</form>
+{{/battletag}}
+
+{{#battletag}}
+<a href="/characters">Characters</a>
+<a href="/pets">Pets</a>
+<br>
+Hello {{ battletag }}
+{{/battletag}}

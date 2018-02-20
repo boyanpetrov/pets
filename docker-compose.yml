@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    postgres:
+        image: postgres
+        volumes:
+            - /home/data/peta:/var/lib/postgresql/data/pgdata
+        environment:
+            - POSTGRES_PASSWORD=admin
+            - POSTGRES_USER=admin
+            - PGDATA=/var/lib/postgresql/data/pgdata
+            - POSTGRES_DB=peta
+        ports:
+            - "5432:5432"
