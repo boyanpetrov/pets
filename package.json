@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node server/server.js",
+    "start": ". ./env.sh && npm run pg-migrate-up && node server/server.js",
     "dev": ". ./env-dev.sh && nodemon server/server.js",
     "test": ". ./env-dev.sh && npm run pg-refresh:dev && npm run unit && npm run integration",
     "test:ci": ". ./env-ci.sh && npm run unit && npm run integration",
