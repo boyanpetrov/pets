@@ -26,10 +26,6 @@ var scheduleTasks  = require('./tasks');
 
 scheduleTasks(db);
 
-var privateKey = fs.readFileSync(path.resolve('cert/key.pem'), 'utf8');
-var certificate = fs.readFileSync(path.resolve('cert/cert.pem'), 'utf8');
-var credentials = { key: privateKey, cert:certificate, passphrase: '1234' };
-
 passport.use(new BnetStrategy({
     clientID: bnetConfig.key,
     clientSecret: bnetConfig.secret,
@@ -66,6 +62,10 @@ var httpApp = express();
 httpApp.listen(process.env.PORT || 3000);
 
 if (process.env.NODE_ENV == 'development' ) {
+  var privateKey = fs.readFileSync(path.resolve('cert/key.pem'), 'utf8');
+  var certificate = fs.readFileSync(path.resolve('cert/cert.pem'), 'utf8');
+  var credentials = { key: privateKey, cert:certificate, passphrase: '1234' };
+
   httpApp.use((req, res) => {
     res.redirect('https://localhost:3001');
   });
