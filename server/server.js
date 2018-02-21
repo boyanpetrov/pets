@@ -57,10 +57,9 @@ app.use(middleware.sessionLogger);
 
 app.use(routes);
 
-var httpApp = express();
 var PORT = process.env.PORT || 3000;
 
-httpApp.listen(PORT, function() {
+app.listen(PORT, function() {
   console.log(`Listening on PORT ${PORT}`);
 });
 
@@ -69,7 +68,7 @@ if (process.env.NODE_ENV == 'development' ) {
   var certificate = fs.readFileSync(path.resolve('cert/cert.pem'), 'utf8');
   var credentials = { key: privateKey, cert:certificate, passphrase: '1234' };
 
-  httpApp.use((req, res) => {
+  app.use((req, res) => {
     res.redirect('https://localhost:3001');
   });
 
