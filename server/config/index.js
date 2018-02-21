@@ -7,6 +7,8 @@ if (process.env.NODE_ENV == 'production') {
   config = require('./ci');
 }
 
-config.bnet = bnetApi;
+if (process.env.NODE_ENV != 'ci') {
+  config.bnet = bnetApi;
+}
 
 module.exports = config;
