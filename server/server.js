@@ -58,8 +58,11 @@ app.use(middleware.sessionLogger);
 app.use(routes);
 
 var httpApp = express();
+var PORT = process.env.PORT || 3000;
 
-httpApp.listen(process.env.PORT || 3000);
+httpApp.listen(PORT, function() {
+  console.log(`Listening on PORT ${PORT}`);
+});
 
 if (process.env.NODE_ENV == 'development' ) {
   var privateKey = fs.readFileSync(path.resolve('cert/key.pem'), 'utf8');
