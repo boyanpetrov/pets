@@ -1,5 +1,4 @@
 var config = require('./development');
-var bnetApi = require('./bnetApi');
 
 if (process.env.NODE_ENV == 'production') {
   config = require('./production');
@@ -7,6 +6,9 @@ if (process.env.NODE_ENV == 'production') {
   config = require('./ci');
 }
 
-config.bnet = bnetApi;
+if (process.env.NODE_ENV != 'ci') {
+  var bnetApi = require('./bnetApi');
+  config.bnet = bnetApi;
+}
 
 module.exports = config;
