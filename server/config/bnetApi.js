@@ -8,7 +8,7 @@ if (process.env.BNET_SECRET == undefined) {
   missingVars.push('BNET_SECRET');
 }
 
-if (process.env.HOSTNAME == undefined) {
+if (process.env.BNET_HOSTNAME == undefined) {
   missingVars.push('BNET_HOSTNAME');
 }
 
@@ -23,6 +23,6 @@ if (missingVars.length) {
 module.exports = {
   key: process.env.BNET_KEY,
   secret: process.env.BNET_SECRET,
-  callbackUrl: `https://${process.env.HOSTNAME}/auth/bnet/callback`,
+  callbackUrl: `https://${process.env.BNET_HOSTNAME}/auth/bnet/callback`,
   region: process.env.BNET_REGION
 };
