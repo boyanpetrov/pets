@@ -9,7 +9,7 @@ if (process.env.BNET_SECRET == undefined) {
 }
 
 if (process.env.HOSTNAME == undefined) {
-  missingVars.push('HOSTNAME');
+  missingVars.push('BNET_HOSTNAME');
 }
 
 if (process.env.BNET_REGION == undefined) {
