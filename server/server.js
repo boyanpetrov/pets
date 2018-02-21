@@ -20,7 +20,7 @@ var _ = require('lodash');
  */
 var routes = require('./routes');
 var middleware = require('./middleware');
-var config = require('./config/bnetApi');
+var bnetConfig = require('./config').bnet;
 var db = require('./db');
 var scheduleTasks  = require('./tasks');
 
@@ -31,10 +31,10 @@ var certificate = fs.readFileSync(path.resolve('cert/cert.pem'), 'utf8');
 var credentials = { key: privateKey, cert:certificate, passphrase: '1234' };
 
 passport.use(new BnetStrategy({
-    clientID: config.key,
-    clientSecret: config.secret,
-    callbackURL: config.callbackUrl,
-    region: config.region
+    clientID: bnetConfig.key,
+    clientSecret: bnetConfig.secret,
+    callbackURL: bnetConfig.callbackUrl,
+    region: bnetConfig.region
   }, function(accessToken, refreshToken, bnetProfile, done) {
     return done(null, bnetProfile);
   }
@@ -61,13 +61,14 @@ app.use(middleware.sessionLogger);
 
 app.use(routes);
 
-var httpsServer = https.createServer(credentials, app);
-
 var httpApp = express();
 
-httpApp.use((req, res) => {
-  res.redirect('https://localhost:3001');
-});
+httpApp.listen(process.env.PORT || 3000);
 
-httpApp.listen(3000);
-httpsServer.listen(3001);
+if (process.env.NODE_ENV == 'development' ) {
+  httpApp.use((req, res) => {
+    res.redirect('https://localhost:3001');
+  });
+
+  https.createServer(credentials, app).listen(3001);
+}
