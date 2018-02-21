@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": ". ./env.sh && npm run pg-migrate-up && node server/server.js",
+    "start": "npm run pg-migrate-up && node server/server.js",
     "dev": ". ./env-dev.sh && nodemon server/server.js",
     "test": ". ./env-dev.sh && npm run pg-refresh:dev && npm run unit && npm run integration",
     "test:ci": ". ./env-ci.sh && npm run unit && npm run integration",
@@ -12,7 +12,7 @@
     "unit": "mocha \"test/unit/test.js\"",
     "pg-migrate-up": "./node_modules/.bin/node-pg-migrate up",
     "pg-migrate-down": "./node_modules/.bin/node-pg-migrate down",
-    "pg-migrate-create": " . ./env.sh && ./node_modules/.bin/node-pg-migrate create",
+    "pg-migrate-create": "./node_modules/.bin/node-pg-migrate create",
     "pg-migrate-up:dev": ". ./env-dev.sh && npm run pg-migrate-up",
     "pg-migrate-down:dev": ". ./env-dev.sh && npm run pg-migrate-down",
     "pg-migrate-create:dev": " . ./env-dev.sh && npm run pg-migrate-create",
