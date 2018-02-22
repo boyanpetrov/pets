@@ -1,17 +1,18 @@
 var router = require('express').Router();
 var STATUS_CODES = require('http').STATUS_CODES;
-var _ = require('lodash');
 
+var _ = require('lodash');
 var middleware = require('../middleware');
 var bnet = require('../lib/bnetApi');
 var template = require('../lib/template');
+var logger = require('../lib/logger');
 
 router.get('/characters', [middleware.requiresLogin], (req, res) => {
   bnet.getWoWCharacters(req.session.passport.user.token)
     .then(data => template.render('characters', data))
     .then(output => res.send(output))
     .catch(err => {
-      console.log(err);
+      logger.error({ err });
       if (err instanceof bnet.errors.BnetRequestError) {
         return res.status(500).send(`Couldn't characters from battle.net`);
       }
@@ -32,7 +33,7 @@ router.get('/realm/:realm/characters/:name', (req, res) => {
     .then(data => template.render('characterDetail', data.character))
     .then(output => res.send(output))
     .catch(err => {
-      console.log(err);
+      logger.error({ err });
       if (err instanceof bnet.errors.BnetRequestError) {
         return res.status(500).send(`Couldn't retrieve character profile from battle.net`);
       }

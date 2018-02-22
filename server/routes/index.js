@@ -1,12 +1,13 @@
 var router = require('express').Router();
 var STATUS_CODES = require('http').STATUS_CODES;
-var _ = require('lodash');
 
 var template = require('../lib/template');
 
+var logger = require('../lib/logger');
 var oauth = require('./oauth');
 var pets = require('./pets');
 var characters = require('./characters');
+var _ = require('lodash');
 
 router.use(oauth);
 router.use(characters);
@@ -20,12 +21,9 @@ router.get('/', (req, res) => {
   }
 
   return template.render('index', context)
-    .then(output => {
-      req.log.info(`Sending STATUS_CODE:200 ...`);
-      return res.send(output);
-    })
+    .then(output => res.send(output))
     .catch(err => {
-      req.log.error(err);
+      logger.error(err);
       return res.status(500).send(STATUS_CODES[500]);
     });
 });

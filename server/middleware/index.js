@@ -1,9 +1,5 @@
 var _ = require('lodash');
-
-function sessionLogger(req, res, next) {
-  console.log(req.session);
-  next();
-}
+var logger = require('../lib/logger');
 
 function requiresLogin(req, res, next) {
   if (!_.has(req, 'session.passport.user.id')) {
@@ -13,7 +9,12 @@ function requiresLogin(req, res, next) {
   }
 }
 
+function requestLogger(req, res, next) {
+  logger.info({ req });
+  return next();
+}
+
 module.exports = {
-  sessionLogger,
   requiresLogin,
+  requestLogger
 };
