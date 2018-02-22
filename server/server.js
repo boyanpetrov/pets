@@ -14,7 +14,6 @@ var session = require('express-session');
 var passport = require('passport');
 var BnetStrategy = require('passport-bnet').Strategy;
 var _ = require('lodash');
-var pino = require('express-pino-logger')();
 
 /**
  * Custom libs
@@ -41,11 +40,11 @@ var app = express();
 
 app.set('db', db);
 
+app.use(middleware.requestLogger);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: "dinosaur" }));
 app.use(passport.initialize());
 app.use(passport.session())
-app.use(pino);
 
 passport.serializeUser(function(bnetProfile, done) {
   done(null, bnetProfile);
@@ -54,8 +53,6 @@ passport.serializeUser(function(bnetProfile, done) {
 passport.deserializeUser(function(bnetProfile, done) {
   done(null, bnetProfile);
 });
-
-app.use(middleware.sessionLogger);
 
 app.use(routes);
 
