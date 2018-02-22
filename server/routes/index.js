@@ -20,9 +20,12 @@ router.get('/', (req, res) => {
   }
 
   return template.render('index', context)
-    .then(output => res.send(output))
+    .then(output => {
+      req.log.info(`Sending STATUS_CODE:200 ...`);
+      return res.send(output);
+    })
     .catch(err => {
-      console.log(err);
+      req.log.error(err);
       return res.status(500).send(STATUS_CODES[500]);
     });
 });
