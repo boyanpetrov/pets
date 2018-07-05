@@ -1,9 +1,10 @@
 {
   "name": "peta",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.1",
+  "description": "Wow Pets Battles",
+  "private": true,
   "scripts": {
+    "build-client": "npm run build --prefix client",
     "start": "npm run pg-migrate-up && node server/server.js",
     "dev": ". ./env-dev.sh && nodemon server/server.js",
     "test": ". ./env-dev.sh && npm run pg-refresh:dev && npm run unit && npm run integration",
@@ -21,7 +22,7 @@
     "pg-refresh:dev": "npm run pg-down:dev && npm run pg-up:dev && sleep 5 "
   },
   "author": "Boyan Petrov & Simon Tweed",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
@@ -30,10 +31,9 @@
     "express-session": "^1.15.6",
     "lodash": "^4.17.5",
     "mocha": "^5.0.1",
-    "mustache": "^2.3.0",
     "node-cron": "^1.2.1",
     "node-pg-migrate": "^2.21.0",
-    "nodemon": "^1.14.12",
+    "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-bnet": "^1.2.1",
     "passport-local": "^1.0.0",
