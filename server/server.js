@@ -18,6 +18,7 @@ var _ = require('lodash');
 /**
  * Custom libs
  */
+var logger = require('./lib/logger');
 var routes = require('./routes');
 var middleware = require('./middleware');
 var bnetConfig = require('./config').bnet;
@@ -61,6 +62,12 @@ var PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
   console.log(`Listening on PORT ${PORT}`);
 });
+
+if (process.env.NODE_ENV === 'development' || process.env.NODE_SERVE_STATIC) {
+  const staticPath = path.join(__dirname, '../client/build/');
+  app.use('/', express.static(staticPath));
+  logger.info(`Serving static files at / from ${staticPath}`);
+}
 
 if (process.env.NODE_ENV == 'development' ) {
   var privateKey = fs.readFileSync(path.resolve('cert/key.pem'), 'utf8');

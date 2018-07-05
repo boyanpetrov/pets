@@ -2,15 +2,13 @@ var router = require('express').Router();
 var STATUS_CODES = require('http').STATUS_CODES;
 
 var _ = require('lodash');
-var middleware = require('../middleware');
-var bnet = require('../lib/bnetApi');
-var template = require('../lib/template');
-var logger = require('../lib/logger');
+var middleware = require('../../middleware');
+var bnet = require('../../lib/bnetApi');
+var logger = require('../../lib/logger');
 
 router.get('/characters', [middleware.requiresLogin], (req, res) => {
   bnet.getWoWCharacters(req.session.passport.user.token)
-    .then(data => template.render('characters', data))
-    .then(output => res.send(output))
+    .then(data => res.send(data))
     .catch(err => {
       logger.error({ err });
       if (err instanceof bnet.errors.BnetRequestError) {
@@ -30,8 +28,7 @@ router.get('/realm/:realm/characters/:name', (req, res) => {
   var fields = ['pets'];
 
   bnet.getWoWCharacterProfile(realm, name, fields)
-    .then(data => template.render('characterDetail', data.character))
-    .then(output => res.send(output))
+    .then(data => res.send(data.character))
     .catch(err => {
       logger.error({ err });
       if (err instanceof bnet.errors.BnetRequestError) {
