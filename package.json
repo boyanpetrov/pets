@@ -4,8 +4,8 @@
   "description": "Wow Pets Battles",
   "private": true,
   "scripts": {
-    "build-client": "npm run build-client --prefix client",
-    "start": "npm run build-client && npm run pg-migrate-up && node server/server.js",
+    "build-client": "npm run build --prefix client",
+    "start": "npm run pg-migrate-up && node server/server.js",
     "dev": ". ./env-dev.sh && nodemon server/server.js",
     "test": ". ./env-dev.sh && npm run pg-refresh:dev && npm run unit && npm run integration",
     "test:ci": ". ./env-ci.sh && npm run unit && npm run integration",
